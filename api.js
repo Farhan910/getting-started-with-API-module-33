@@ -19,3 +19,19 @@ function displayUsers(data){
     }
 }
 
+
+function loadComments(){
+    fetch('https://jsonplaceholder.typicode.com/comments')
+    .then (res => res.json())
+    .then(data => loadMoreComments(data))
+}
+
+loadComments();
+function loadMoreComments(comments){
+    const commentContainer = document.getElementById('load-comment')
+    for(const comment of comments ){
+        const p = document.createElement('p')
+        p.innerText = comment.email
+        commentContainer.appendChild(p)
+    }
+}
